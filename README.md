@@ -1,3 +1,4 @@
 # ajv-sandbox
 
-ts-node src\runner.ts
+    set DEBUG=*
+    ts-node src\runner.ts
