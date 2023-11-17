@@ -15,12 +15,14 @@ async function run() {
     ajv.addSchema(enbledFleetSchema, "enbledFleetSchema");
     ajv.addSchema(ohadsSchema, "ohadsSchema");
 
+    let isValid = ajv.validate("enbledFleetSchema", {});
+    debug(isValid);
+    debug(ajv.errors);
+    expect(isValid).to.equal(false);
+
     const enabler = {
         "enable_a" : false
     }
-    let isValid = ajv.validate("enbledFleetSchema", {});
-    debug(isValid);
-    expect(isValid).to.equal(false);
 
     isValid = ajv.validate("enbledFleetSchema", enabler);       //the schema expects enable_a:"false"
     debug(isValid);
@@ -29,6 +31,12 @@ async function run() {
     enabler.enable_a = true
     isValid = ajv.validate("enbledFleetSchema", enabler);
     debug(isValid);
+    debug(ajv.errors);
+    expect(isValid).to.equal(false);
+
+    isValid = ajv.validate("disabledFleetSchema", enabler);       //another schema expects more (missing) params
+    debug(isValid);
+    debug(ajv.errors);
     expect(isValid).to.equal(false);
 
 }
