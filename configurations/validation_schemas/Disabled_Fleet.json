@@ -2,8 +2,8 @@
 	"type": "object",
 	"properties": {
 		"fleet_name": {"type": "string", "not":{"enum": ["test"]}},
-		"enable_smart_adas": {"type": "boolean", "not":{"enum": [ false ]}}
+		"enable_a": {"type": "boolean", "not":{"enum": [ false ]}}
 	},
    
-	"required": ["fleet_name", "enable_smart_adas"]
+	"required": ["fleet_name", "enable_a"]
 }
