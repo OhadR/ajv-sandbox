@@ -1,0 +1,1 @@
+{"type":"object","properties":{"enable_smart_adas":{"enum":[false],"type":"boolean"}},"required":["enable_smart_adas"]}
