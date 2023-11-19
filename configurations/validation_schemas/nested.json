@@ -1,0 +1,19 @@
+{
+  "type":"object",
+  "properties":{
+    "nested":{
+      "type":"object",
+      "properties":{
+        "foo": {
+          "type": "string"
+        },
+        "bar": {
+          "type": "string"
+        }
+      },"required":["foo","bar"]
+    },
+    "keepAlways":{
+      "type":"boolean"
+    }
+  },"required":["nested","keepAlways"]
+}

@@ -4,6 +4,7 @@ const debug = require('debug')('ajv-sandbox');
 import disabledFleetSchema from "../configurations/validation_schemas/Disabled_Fleet.json";
 import enbledFleetSchema from "../configurations/validation_schemas/Enabled_Fleet.json";
 import ohadsSchema from "../configurations/validation_schemas/ohads.json";
+import nestedSchema from "../configurations/validation_schemas/nested.json";
 
 const Ajv = require('ajv');
 
@@ -14,6 +15,7 @@ async function run() {
     ajv.addSchema(disabledFleetSchema, "disabledFleetSchema");
     ajv.addSchema(enbledFleetSchema, "enbledFleetSchema");
     ajv.addSchema(ohadsSchema, "ohadsSchema");
+    ajv.addSchema(nestedSchema, "nestedSchema");
 
     let isValid = ajv.validate("enbledFleetSchema", {});
     debug(isValid);
@@ -53,6 +55,20 @@ async function run() {
     isValid = ajv.validate("ohadsSchema", ohads);
     debug(isValid);
     expect(isValid).to.equal(true);    //fleetName is fine
+
+    /******** nested ********/
+    debug('checking object with nested objects...');
+    const complex = {
+        keepAlways : false,     // keepAlways can be any boolean
+        nested: {
+            foo: 'moshe',
+            bar: 'bar'
+        }
+    }
+    isValid = ajv.validate("nestedSchema", complex);
+    debug(isValid);
+    debug(ajv.errors);
+    expect(isValid).to.equal(true);
 }
 
 
