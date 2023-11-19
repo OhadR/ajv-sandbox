@@ -39,6 +39,20 @@ async function run() {
     debug(ajv.errors);
     expect(isValid).to.equal(false);
 
+    const ohads = {
+        keepAlways : false,     // keepAlways can be any boolean
+        fleeName: 'moshe'
+    }
+
+    isValid = ajv.validate("ohadsSchema", ohads);
+    debug(isValid);
+    debug(ajv.errors);
+    expect(isValid).to.equal(false);    //fleetName can be ['A__ohads_transportation_Ltd']
+
+    ohads.fleeName = 'A__ohads_transportation_Ltd';
+    isValid = ajv.validate("ohadsSchema", ohads);
+    debug(isValid);
+    expect(isValid).to.equal(true);    //fleetName is fine
 }
 
 

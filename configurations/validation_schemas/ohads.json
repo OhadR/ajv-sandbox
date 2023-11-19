@@ -1,14 +1,9 @@
 {"type":"object","properties":{
-  "fleet_name":{
+  "fleeName":{
     "enum":["A__ohads_transportation_Ltd"],
     "type":"string"
   },
-  "vehicle_model":{
-    "enum":["Sprinter"],
-    "type":"string"
-  },
   "keepAlways":{
-    "enum":[false],
     "type":"boolean"
   }
-},"required":["fleet_name","vehicle_model","keepAlways"]}
+},"required":["fleeName","keepAlways"]}
